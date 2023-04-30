@@ -13,6 +13,9 @@ mainClassName = 'ohm.softa.a07.App'
 repositories {
 	mavenCentral()
 }
+configurations{
+	testCompile
+}
 
 dependencies {
 	implementation("org.apache.commons:commons-lang3:$commons_lang3_version")
@@ -29,7 +32,6 @@ dependencies {
 }
 
 javafx {
-	sdk = '/Users/riedhammerko/Library/Java/JavaVirtualMachines/javafx-sdk-17'
 	version = 17
 	modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
