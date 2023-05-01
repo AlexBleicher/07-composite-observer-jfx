@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,7 +30,6 @@ class OpenMensaAPITests {
 		// use this to intercept all requests and output them to the logging facilities
 		HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 		loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
 		OkHttpClient client = new OkHttpClient.Builder()
 			.addInterceptor(loggingInterceptor)
 			.build();
@@ -44,12 +45,12 @@ class OpenMensaAPITests {
 
 	@Test
 	void testGetMeals() throws IOException {
-		// TODO prepare call
+		Call<List<Meal>> callMeal = openMensaAPI.getMeals("02.05.2023");
 
-		// TODO execute the call synchronously
+		Response<List<Meal>> response = callMeal.execute();
 
 		// TODO unwrap the body
-		List<Meal> meals = null;
+		List<Meal> meals = response.body();
 
 		assertNotNull(meals);
 		assertNotEquals(0, meals.size());
